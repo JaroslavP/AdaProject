@@ -2,36 +2,59 @@ V "GNAT Lib v2013"
 M P W=b
 A -O2
 A -g
+A -g
 A -gnatA
-P ZX
+P SS ZX
 
 RN
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
 RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_IMPLICIT_LOOPS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
 RV NO_IMPLEMENTATION_PRAGMAS
 RV SPARK
 
-U parallel_sequential_circuit%b  parallel_sequential_circuit.adb  b5da471e NE OO SU
+U parallel_sequential_circuit%b  parallel_sequential_circuit.adb  abb9aa24 NE OO SU
 W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
 W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.streams%s		a-stream.ads		a-stream.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
+W system%s		system.ads		system.ali
+W system.address_image%s  s-addima.adb		s-addima.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W system.stream_attributes%s  s-stratt.adb	s-stratt.ali
 
 U parallel_sequential_circuit%s  parallel_sequential_circuit.ads  f7d0680d EE NE OO SU
 
 D ada.ads		20130417131022 3ffc8e18
 D a-except.ads		20130417131018 10fcae55
 D a-finali.ads		20130417131020 52ecdc1b
+D a-flteio.ads		20130417131020 e18a47a0
 D a-inteio.ads		20130417131020 f64b89a4
 D a-ioexce.ads		20130417131020 8b9de6cd
 D a-stream.ads		20130417131020 2ca4ee37
 D a-tags.ads		20130417131022 6c0509d0
 D a-textio.ads		20130417131022 386df5d4
+D a-tiflio.ads		20130417131022 56fbda09
 D a-tiinio.ads		20130417131022 aa04e5d6
 D a-unccon.ads		20130417131022 f9eb8f06
 D interfac.ads		20130417131026 cb4a8015
 D i-cstrea.ads		20130417131026 8128536b
-D parallel_sequential_circuit.ads  20140305133206 f7d0680d
-D parallel_sequential_circuit.adb  20140305133252 8c2c5363
+D parallel_sequential_circuit.ads  20140319205518 f7d0680d
+D parallel_sequential_circuit.adb  20140323203616 73c5f9f9
 D system.ads		20130417131036 5fc8ae56
+D s-addima.ads		20130417131028 a1ec9d3a
 D s-crtl.ads		20130417131028 dfcfca61
 D s-exctab.ads		20130417131028 66e51330
 D s-ficobl.ads		20130417131028 55a71d43
@@ -39,22 +62,70 @@ D s-finmas.ads		20130417131028 b95bb341
 D s-finroo.ads		20130417131028 4ff27390
 D s-parame.ads		20130417131032 b6e20cc0
 D s-pooglo.ads		20130417131032 542f33d0
+D s-secsta.ads		20130417131032 eea35a36
 D s-soflin.ads		20130417131032 24c8153c
 D s-stache.ads		20130417131032 596fc1b4
 D s-stalib.ads		20130417131032 f78bcf95
 D s-stoele.ads		20130417131032 facd7d98
 D s-stoele.adb		20130417131032 afc5dc80
 D s-stopoo.ads		20130417131032 7b8fbeee
+D s-stratt.ads		20130417131032 aedef97e
 D s-traent.ads		20130417131032 5221ee41
 D s-unstyp.ads		20130417131034 6ae15c76
 D s-wchcon.ads		20130417131034 bfeb2e3d
 X 1 ada.ads
-16K9*Ada 19e8 14|1r6 1r37 2r6 2r37
-X 4 a-inteio.ads
-18K13*Integer_Text_IO[9|45] 14|2w10 2r41
-X 8 a-textio.ads
-49K13*Text_IO 471e16 14|1w10 1r41
-242U14*Put 14|6s4
-X 13 parallel_sequential_circuit.ads
-1U11*Parallel_Sequential_Circuit 14|4b11 7l5 7t32
+16K9*Ada 19e8 16|1r6 1r37 2r6 2r37 3r6 3r37
+X 4 a-flteio.ads
+20K13*Float_Text_IO[10|45] 16|3w10 3r41
+X 5 a-inteio.ads
+18K13*Integer_Text_IO[11|45] 16|2w10 2r41
+X 9 a-textio.ads
+49K13*Text_IO 471e16 16|1w10 1r41
+52P9*File_Type(369R9) 16|23r18 73r23
+53n23*In_File{53E9} 16|27r22 75r28
+92U14*Open 16|27s7 75s7
+98U14*Close 16|42s7 84s7
+X 10 a-tiflio.ads
+51U14*Get 16|78s14[4|20] 81s13[4|20]
+X 11 a-tiinio.ads
+50U14*Get 16|28s7[5|18] 32s10[5|18] 36s17[5|18] 40s7[5|18] 41s7[5|18]
+65U14*Put 16|95s4[5|18]
+X 15 parallel_sequential_circuit.ads
+1U11*Parallel_Sequential_Circuit 16|5b11 99l5 99t32
+X 16 parallel_sequential_circuit.adb
+7A9 Mass_CnParElm(integer)<integer> 13r19
+8A9 main_data_row(integer)<integer> 9r40
+9A9 main_data(8A9)<integer> 14r18
+10R9 Par_Seq 17e14 18r13 22r31 25r16
+12i9 CnBranch{integer} 28m30 30r31
+13a9 CnParElm{7A9} 32m33 33r33 52r37
+14a9 minData{9A9} 36m40
+15i9 C{integer} 40m30 95r16
+16i9 N{integer} 41m30 76r32
+18r4 NetWork{10R9} 52r29 76r24 94m4 95r8
+22V13 GetNetWork{10R9} 22b13 44l8 44t18 94s15
+23p7 inputFile{9|52P9} 27m12 27r12 28r11 32r14 36r21 40r11 41r11 42m13 42r13
+24i7 kBegin{integer} 31m10 34r24
+24i15 kEnd{integer} 29m7 31r20 33m10 33r18 34r32
+25r7 LocData{10R9} 28m22 28r22 30r23 32m25 32r25 33r25 36m32 36r32 40m22
+. 40r22 41m22 41r22 43r14
+30i11 Count{integer} 32r42 33r42
+34i14 iCount{integer} 36r48
+35i17 jCount{integer} 36r56
+48V13 Sum_of_elements{integer} 48b13 55l8 55t23 96s18
+49i9 LocSum{integer} 52m10 52r20 54r14
+51i11 Count{integer} 52r46
+56i4 SumElement{integer} 77r27 80r27 96m4
+60A9 random_time_row(float)<integer> 61r42
+61A9 random_time(60A9)<integer> 64r21 65r24
+62R11 RandonLiveTime 66e17 67r15 71r38 72r20
+64a10 main_time{61A9} 81m45
+65a10 reserve_time{61A9} 78m46
+67r4 live_time{62R11} 97m4
+71V13 GetRandomLiveTime{62R11} 71b13 86l8 86t25 97s17
+72r7 LocTimeOGar{62R11} 78m34 78r34 81m33 81r33 85r14
+73p7 input_tet_file{9|52P9} 75m12 75r12 78r18 81r17 84m13 84r13
+76i11 iCount{integer} 78r59 81r55
+77i14 jCount{integer} 78r67
+80i14 lCount{integer} 81r63
 

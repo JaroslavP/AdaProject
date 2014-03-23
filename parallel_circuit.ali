@@ -29,8 +29,8 @@ D a-tiinio.ads		20130417131022 aa04e5d6
 D a-unccon.ads		20130417131022 f9eb8f06
 D interfac.ads		20130417131026 cb4a8015
 D i-cstrea.ads		20130417131026 8128536b
-D parallel_circuit.ads	20140305132712 82e9a112
-D parallel_circuit.adb	20140305133244 add067aa
+D parallel_circuit.ads	20140319195930 82e9a112
+D parallel_circuit.adb	20140319195930 add067aa
 D system.ads		20130417131036 5fc8ae56
 D s-crtl.ads		20130417131028 dfcfca61
 D s-exctab.ads		20130417131028 66e51330

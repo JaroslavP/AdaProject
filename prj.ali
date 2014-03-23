@@ -30,10 +30,10 @@ D a-tiinio.ads		20130417131022 aa04e5d6
 D a-unccon.ads		20130417131022 f9eb8f06
 D interfac.ads		20130417131026 cb4a8015
 D i-cstrea.ads		20130417131026 8128536b
-D parallel_circuit.ads	20140305132712 82e9a112
-D parallel_sequential_circuit.ads  20140305133206 f7d0680d
-D prj.adb		20140305133124 b40410af
-D sequential_circuit.ads  20140305132958 3c3491dc
+D parallel_circuit.ads	20140319195930 82e9a112
+D parallel_sequential_circuit.ads  20140319205518 f7d0680d
+D prj.adb		20140319205512 b40410af
+D sequential_circuit.ads  20140319195930 3c3491dc
 D system.ads		20130417131036 5fc8ae56
 D s-crtl.ads		20130417131028 dfcfca61
 D s-exctab.ads		20130417131028 66e51330
@@ -57,16 +57,16 @@ X 4 a-inteio.ads
 18K13*Integer_Text_IO[9|45] 15|2w10 2r41
 X 8 a-textio.ads
 49K13*Text_IO 471e16 15|1w10 1r41
-242U14*Put 15|11s7 20s22
+242U14*Put 15|11s7 17s22
 X 9 a-tiinio.ads
 55U14*Get 15|12s7[4|18]
 X 13 parallel_circuit.ads
-1U11*Parallel_Circuit 15|3w6 15s17
+1U11*Parallel_Circuit 15|3w6 14s17
 X 14 parallel_sequential_circuit.ads
-1U11*Parallel_Sequential_Circuit 15|5w6 19s17
+1U11*Parallel_Sequential_Circuit 15|5w6 16s17
 X 15 prj.adb
-7U11*prj 7b11 23l5 23t8
+7U11*prj 7b11 20l5 20t8
 8i9 CValue{integer} 12m11 13r9
 X 16 sequential_circuit.ads
-1U11*Sequential_Circuit 15|4w6 17s17
+1U11*Sequential_Circuit 15|4w6 15s17
 

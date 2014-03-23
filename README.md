@@ -1,34 +1,35 @@
 AdaProject
 ==================================================
 
-Будь-якi доповнення по проекту (типу новi файли) 
-додавать сюда ^_^, або якусь iншу iнфу в роздiл
-OTHER ! ! ! 
-+ бажано додавати в код коментарiв трiшки, типу 
-тру паца.
- 
+* * * 
+
 ==================================================
 
-Files for Parallel_Circuit // Паралельна схема 
+# Files for Parallel_Circuit 
+ 
  - Parallel_Circuit.ads
  - Parallel_Circuit.adb
 
 ==================================================
 
-Files for Sequential_Circuit // Послiдовна схема 
+# Files for Sequential_Circuit 
+
  - Sequential_Circuit.ads
  - Sequential_Circuit.adb
+ - Sequential_Circuit_input_test.txt
 
 ==================================================
 
-Files for Parallel_Sequential_Circuit // Паралельно-послiдовна схема
+# Files for Parallel_Sequential_Circuit
+ 
  - Parallel_Sequential_Circuit.ads
  - Parallel_Sequential_Circuit.adb
+ - Parallel_Sequential_input_test.tet
+ - Parallel_Sequential_input_test.dat
 
 ==================================================
 
 OTHER:
- - супровiд prj.adb залишаю за собою XD
- - *.ali & *.o створює Ада (так, навсякий випадок XD)
+ - something
 
 ==================================================

@@ -1,12 +1,22 @@
 project Default is
 
-   for Main use ("prj.adb", "prj.adb");
+   for Main use ("prj.adb");
+   for Source_Dirs use ("./**");
 
    package Compiler is
       for Default_Switches ("ada") use ("-g", "-O2");
    end Compiler;
 
-   for Source_Dirs use ("./**");
+   package Ide is
+   end Ide;
+
+   package Make is
+      for Makefile use "prj.adb";
+   end Make;
+
+   package Builder is
+      for Default_Switches ("ada") use ("-g");
+   end Builder;
 
 end Default;
 

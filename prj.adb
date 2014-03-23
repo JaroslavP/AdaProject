@@ -11,11 +11,8 @@ begin
       Put("Choose variable: ");
       Get(CValue);
    case CValue is
-
       when 1 => Parallel_Circuit;
-
       when 2 => Sequential_Circuit;
-
       when 3 => Parallel_Sequential_Circuit;
       when others => Put("other");
    end case;
