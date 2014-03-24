@@ -1,0 +1,41 @@
+with Ada.Text_IO, Ada.Integer_Text_IO;
+use Ada.Text_IO, Ada.Integer_Text_IO;
+procedure FileMgr is
+  
+  Filename : String := "par_4.dat"; 
+  File : Ada.Text_IO.File_Type;
+  m : Integer := 0;
+  c : Integer := 0;
+  n : Integer := 0;
+begin
+  
+  Open(File => File, Mode => In_File,
+       Name => Filename);
+  Get(File  => File, Item  => m);
+  m := m*3;
+  Put(m);
+  
+  declare
+    type dat_array is array (1..m) of Integer;
+    Par_inf : dat_array;
+  
+  begin
+    for i in 1..m loop
+      Get(File => File, Item => Par_inf(i));
+    end loop;   
+    Get(File  => File, Item  => c);
+    Get(File  => File, Item  => n);
+    Put_Line("");
+    for j in 1..m loop
+      Put(Par_inf(j));
+      Put_Line("");
+    end loop;
+    Put_Line("C=");    
+    Put(c);
+    Put_Line("");
+    Put_Line("N=");    
+    Put(n);
+    Close (File);    
+  end;
+
+end FileMgr;
