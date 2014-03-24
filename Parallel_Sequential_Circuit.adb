@@ -4,6 +4,7 @@ with Ada.Float_Text_IO;		use Ada.Float_Text_IO;
 
 procedure Parallel_Sequential_Circuit is
    
+   -- NetWork Struck
    type Mass_CnParElm is array (1..100) of Integer; 
    type main_data_row is array (1..3) of Integer ;
    type main_data is array (1..100) of main_data_row;
@@ -86,14 +87,73 @@ procedure Parallel_Sequential_Circuit is
    end GetRandomLiveTime;
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    
+   -- Create  PlanX
+   type plan_type is array (1..100) of Integer;
+   PlanX: plan_type;
+   -- UP by one some plan (form iBegin..iEnd)
+   procedure GetPlanX(iBegin:integer; iEnd:integer) is
+      xCount:integer;
+      plusOne:integer;
+   begin
+      if (PlanX(iEnd) = 0)
+      then PlanX(iEnd) := 1;
+      elsif (PlanX(iEnd) = 1)
+      then 
+         PlanX(iEnd) := 0;
+         xCount := iEnd - 1;
+         plusOne := 1;
+         while(plusOne = 1) loop
+            if (PlanX(xCount) = 0)
+            then 
+               PlanX(xCount) := 1;
+               plusOne := 0;
+            else 
+               PlanX(xCount) := 0;
+            end if;
+            xCount := XCount - 1;
+         end loop;
+      end if;
+   end GetPlanX;
+   -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+      
    -- Finder  Plan
 
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
+   
+-- LoC Values  
+   locCount_1, LocCount_2: Integer;
+-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 begin
    NetWork := GetNetWork;
-   Put(NetWork.C);
    SumElement := Sum_of_elements;
    live_time := GetRandomLiveTime;
-	   
+	
+   
+   
+--     for Count in 1..SumElement loop
+--        PlanX(Count) := 0;
+--        Put(PlanX(Count),0);Put(" ");
+--     end loop;
+--     
+   GetPlanX(7, 12);
+   GetPlanX(7, 12);
+--     GetPlanX(7, 12);
+--     GetPlanX(7, 12);
+--     GetPlanX(7, 12);
+--     GetPlanX(7, 12);
+--     GetPlanX(7, 12);
+
+   
+   New_Line;
+   LocCount_2 := 0;
+   for Count in 1..NetWork.CnBranch loop
+      LocCount_1 := LocCount_2 + 1;
+      LocCount_2 := LocCount_2 + NetWork.CnParElm(Count);
+      for jCount in locCount_1..LocCount_2 loop
+         Put(PlanX(jCount),0);
+         Put(" ");
+      end loop;
+      New_Line;
+   end loop;
+   
 end Parallel_Sequential_Circuit;
