@@ -6,9 +6,9 @@ with Ada.Numerics.Elementary_Functions;		use Ada.Numerics.Elementary_Functions;
 procedure Parallel_Sequential_Circuit is
    
    -- NetWork Struck
-   type Mass_CnParElm is array (1..100) of Integer; 
+   type Mass_CnParElm is array (1..150) of Integer; 
    type main_data_row is array (1..3) of Integer ;
-   type main_data is array (1..100) of main_data_row;
+   type main_data is array (1..150) of main_data_row;
    type Par_Seq is tagged 
      record
 	CnBranch:Integer; -- number of branch
@@ -17,16 +17,15 @@ procedure Parallel_Sequential_Circuit is
         C: Integer := 0; -- money
         N:Integer := 0; -- trying
    end record;
-   NetWork: Par_Seq; 
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    
    -- the initial data
-   function GetNetWork return Par_Seq is 
+   function GetNetWork (LocFileName: String) return Par_Seq is 
+      LocData: Par_Seq;
       inputFile :File_Type;
       kBegin, kEnd :integer;
-      LocData: Par_Seq;
    begin
-      Open(inputFile,In_File,"Parallel_Sequential_input_test.dat");
+      Open(inputFile,In_File, LocFileName);	
       Get(inputFile, LocData.CnBranch);
       kEnd := 0; 
       for Count in 1..LocData.CnBranch loop
@@ -47,39 +46,37 @@ procedure Parallel_Sequential_Circuit is
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
    -- number of element 
-   function Sum_of_elements return Integer is
+   function Sum_of_elements (LocNetWork:Par_Seq) return Integer is
    	LocSum: Integer := 0;
    begin
-      for Count in 1..5 loop
-         LocSum := LocSum + NetWork.CnParElm(Count);
+      for Count in 1..LocNetWork.CnBranch loop
+         LocSum := LocSum + LocNetWork.CnParElm(Count);
       end loop;
       return LocSum;
    end Sum_of_elements;
-   SumElement :Integer := 0;
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    
    -- random live time
-   type random_time_row is array (1..100) of Float;
-   type random_time is array (1..100) of random_time_row;
+   type random_time_row is array (1..150) of Float;
+   type random_time is array (1..150) of random_time_row;
      type RandonLiveTime is tagged
       record
          main_time: random_time;
          reserve_time: random_time;
       end record;
-   live_time: RandonLiveTime;
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    
    -- randon live time
-   function GetRandomLiveTime return RandonLiveTime is
+   function GetRandomLiveTime (LocNetWork:Par_Seq; LocSumElement:integer; LocFileName:String) return RandonLiveTime is
       LocTimeOGar: RandonLiveTime;
       input_tet_file: File_Type;
    begin
-      Open(input_tet_file, In_File, "Parallel_Sequential_input_test.tet");
-      for iCount in 1..NetWork.N loop
-         for jCount in 1..SumElement loop
+      Open(input_tet_file, In_File, LocFileName);
+      for iCount in 1..LocNetWork.N loop
+         for jCount in 1..LocSumElement loop
              Get(input_tet_file, LocTimeOGar.reserve_time(iCount)(jCount));
          end loop;
-         for lCount in 1..SumElement loop
+         for lCount in 1..LocSumElement loop
             Get(input_tet_file, LocTimeOGar.main_time(iCount)(lCount));
          end loop;
       end loop;
@@ -89,48 +86,47 @@ procedure Parallel_Sequential_Circuit is
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    
    -- Create  PlanX
-   type plan_type is array (1..100) of Integer;
-   PlanX: plan_type;
+   type plan_type is array (1..150) of Integer;
    -- UP by one some plan (form iBegin..iEnd)
-   procedure GetPlanX(iBegin:integer; iEnd:integer) is
+   function GetPlanX(LocPlanX: in out plan_type; iBegin:integer; iEnd:integer) return plan_type is
       xCount:integer;
       plusOne:integer;
    begin
-      if (PlanX(iEnd) = 0)
-      then PlanX(iEnd) := 1;
-      elsif (PlanX(iEnd) = 1)
+      if (LocPlanX(iEnd) = 0)
+      then LocPlanX(iEnd) := 1;
+      elsif (LocPlanX(iEnd) = 1)
       then
-         PlanX(iEnd) := 0;
+         LocPlanX(iEnd) := 0;
          xCount := iEnd - 1;
          plusOne := 1;
             while((plusOne = 1) and (xCount >= iBegin)) loop
-               --Put(xCount); Put("xC");
-            if (PlanX(xCount) = 0)
+            if (LocPlanX(xCount) = 0)
             then 
-               PlanX(xCount) := 1;
+               LocPlanX(xCount) := 1;
                plusOne := 0;
             else 
-               PlanX(xCount) := 0;
+               LocPlanX(xCount) := 0;
             end if;
             xCount := xCount - 1;
          end loop;
       end if;
+      return LocPlanX;
    end GetPlanX;
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-      
-   -- Output
-   procedure OutputData(LoxPlan:plan_type; LocF:Float) is
+   
+     -- Output
+   procedure OutputData(LocNetWork:Par_Seq; LocPlan:plan_type; LocF:Float; LocOutFile:String) is
       locCount_1, LocCount_2: Integer;
       outPut: File_Type;
    begin
-      Open(outPut, Out_File,"Parallel_Sequential_input_test.dat");
+      Open(outPut, Out_File, LocOutFile);
       LocCount_2 := 0;
-      for Count in 1..NetWork.CnBranch loop
+      for Count in 1..LocNetWork.CnBranch loop
          LocCount_1 := LocCount_2 + 1;
-         LocCount_2 := LocCount_2 + NetWork.CnParElm(Count);
+         LocCount_2 := LocCount_2 + LocNetWork.CnParElm(Count);
          for jCount in locCount_1..LocCount_2 loop
-            Put(PlanX(jCount),0); Put(" ");
-            Put(outPut, PlanX(jCount),0);Put(outPut," ");
+            Put(LocPlan(jCount),0); Put(" ");
+            Put(outPut, LocPlan(jCount),0);Put(outPut," ");
          end loop;
          New_Line;
          Put_Line(outPut,"");
@@ -139,11 +135,12 @@ procedure Parallel_Sequential_Circuit is
       Put(outPut, "F(x) = "); Put(outPut, LocF);
       Close(outPut);
    end OutputData;
-   -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+   -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+
    
    -- Finder  Plan
-   type minMass is array (1..100) of Float;
-   function FinderPlan(LocNetWork:Par_Seq; LocTime:RandonLiveTime; LocPlan:plan_type) return Float is
+   type minMass is array (1..150) of Float;
+   function FinderMathEx(LocNetWork:Par_Seq; LocPlan:plan_type; LocTime:RandonLiveTime) return Float is
       LocSum:Float := 0.0;
       max:Float;
       LF, Te, Tay, E:Float;
@@ -175,14 +172,14 @@ procedure Parallel_Sequential_Circuit is
       end loop;
       LF := LocSum/Float(LocNetWork.N);
       return LF;
-   end FinderPlan;
+   end FinderMathEx;
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    
    -- Find Honey
-   function Honey (LocNetWork:Par_Seq; LocPlan: plan_type) return Integer is
+   function Honey (LocNetWork:Par_Seq; LocPlan: plan_type; LocSumElement:Integer) return Integer is
    	sumHoney: Integer := 0;
    begin
-      for Count in 1..SumElement loop
+      for Count in 1..LocSumElement loop
          sumHoney := sumHoney + LocNetWork.minData(Count)(3)*LocPlan(Count);
       end loop;
       return sumHoney;
@@ -190,58 +187,54 @@ procedure Parallel_Sequential_Circuit is
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    
    -- find Best Plan 
-   function FindBestPlan(LocNet:Par_Seq) return Float is
+   function FindBestPlan(LocNetWork:Par_Seq; LocPlan:in out plan_type; Loc_live_time:RandonLiveTime; LocSumElement:Integer) return Float is
       LocF, tempF: Float;
       LocMoney: integer;
       BestPlan: plan_type;
       CheckOut: Integer := 0;
    begin
-      for Count in 1..SumElement loop
-         PlanX(Count) := 0;
-      end loop;
-      LocF := FinderPlan(NetWork, live_time, PlanX);
+      LocF := FinderMathEx(LocNetWork, LocPlan, Loc_live_time);
       while (CheckOut /= 20) loop        
---           jE := 0;
---           for iCount in 1..LocNet.CnBranch loop
---              jB := jE + 1;
---              jE := jE + LocNet.CnParElm(iCount);
-         GetPlanX(1,SumElement);
---           end loop;
-         LocMoney := Honey(LocNet, PlanX);
-         if(LocMoney <= LocNet.C) then
-            tempF := FinderPlan(NetWork, live_time, PlanX);
+         LocPlan := GetPlanX(LocPlan,1,LocSumElement);
+         LocMoney := Honey(LocNetWork, LocPlan, LocSumElement);
+         if(LocMoney <= LocNetWork.C) then
+            tempF := FinderMathEx(LocNetWork, LocPlan, Loc_live_time);
             if (tempF > LocF) then
                LocF := tempF;
-               Put(LocF);Put_Line("");
-               BestPlan := PlanX;
+               BestPlan := LocPlan;
             end if;
          end if;
          CheckOut := 0;
-         for ikCount in 1..SumElement loop
-            CheckOut := CheckOut + PlanX(ikCount);
+         for ikCount in 1..LocSumElement loop
+            CheckOut := CheckOut + LocPlan(ikCount);
          end loop;
       end loop;
-      PlanX := BestPlan;
+      LocPlan := BestPlan;
       return LocF;
    end FindBestPlan;
    -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
    
--- LoC Values  
+   -- Main Values  
+   NetWork: Par_Seq;
+   InFile: String := "par_seq_06.dat";
+   SumElement :Integer;
+   live_time: RandonLiveTime;
+   InFileTime: String := "par_seq_06.tet";
+   PlanX: plan_type;
+   OutFile: String := "Parallel_Sequential_output.dat";
    BestF:Float;
-   --HoneyMoney: Integer;
+   HoneyMoney: Integer;
 -- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 begin
-   NetWork := GetNetWork;
-   SumElement := Sum_of_elements;
-   live_time := GetRandomLiveTime;
-      
- 
-   BestF := FindBestPlan(NetWork);
-   OutputData(PlanX,BestF); New_Line;
-   --GetPlanX(13,15);
-   --BestF := 0.0;
-   --outputData(PlanX,BestF);
-   --New_Line;
-   --HoneyMoney := Honey(NetWork, PlanX);
-   --Put("HoneyMoney = ");Put(HoneyMoney,0);
+   NetWork := GetNetWork(InFile);
+   --Put(NetWork.C);
+   SumElement := Sum_of_elements(NetWork);
+   live_time := GetRandomLiveTime(NetWork,SumElement,InFileTime);
+   for Count in 1..SumElement loop
+     PlanX(Count) := 0;
+   end loop;	     
+   BestF := FindBestPlan(NetWork, PlanX, live_time, SumElement);
+   OutputData(NetWork, PlanX,BestF, OutFile); New_Line;
+   HoneyMoney := Honey(NetWork, PlanX,SumElement);
+   Put("HoneyMoney = ");Put(HoneyMoney,0);
 end Parallel_Sequential_Circuit;

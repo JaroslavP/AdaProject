@@ -1,0 +1,7 @@
+project Main is
+
+   for Main use ("main.adb");
+   for Source_Dirs use (".", "method", "fileIOun");
+
+end Main;
+

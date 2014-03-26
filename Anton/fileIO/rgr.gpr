@@ -1,0 +1,6 @@
+project Rgr is
+
+   for Main use ("filemgr.adb");
+
+end Rgr;
+

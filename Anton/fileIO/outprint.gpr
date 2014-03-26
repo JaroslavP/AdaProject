@@ -1,0 +1,6 @@
+project Outprint is
+
+   for Main use ("outdat.adb");
+
+end Outprint;
+

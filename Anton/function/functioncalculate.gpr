@@ -1,0 +1,7 @@
+project FunctionCalculate is
+
+   for Main use ("functCalc.adb");
+   for Source_Dirs use (".", "..\fileIOun", "..\method");
+
+end FunctionCalculate;
+

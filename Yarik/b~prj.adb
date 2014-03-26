@@ -256,12 +256,12 @@ package body ada_main is
    end;
 
 --  BEGIN Object file/option list
-   --   E:\AdaProject\Parallel_Circuit.o
-   --   E:\AdaProject\Parallel_Sequential_Circuit.o
-   --   E:\AdaProject\Sequential_Circuit.o
-   --   E:\AdaProject\prj.o
-   --   -LE:\AdaProject\
-   --   -LE:\AdaProject\
+   --   E:\AdaProjectCopy\Parallel_Circuit.o
+   --   E:\AdaProjectCopy\Parallel_Sequential_Circuit.o
+   --   E:\AdaProjectCopy\Sequential_Circuit.o
+   --   E:\AdaProjectCopy\prj.o
+   --   -LE:\AdaProjectCopy\
+   --   -LE:\AdaProjectCopy\
    --   -LC:/GNAT/2013/lib/gcc/i686-pc-mingw32/4.7.4/adalib/
    --   -static
    --   -lgnat

@@ -275,7 +275,7 @@ package ada_main is
    pragma Export (C, u00119, "parallel_circuitB");
    u00120 : constant Version_32 := 16#82e9a112#;
    pragma Export (C, u00120, "parallel_circuitS");
-   u00121 : constant Version_32 := 16#add2d466#;
+   u00121 : constant Version_32 := 16#ebe43f56#;
    pragma Export (C, u00121, "parallel_sequential_circuitB");
    u00122 : constant Version_32 := 16#f7d0680d#;
    pragma Export (C, u00122, "parallel_sequential_circuitS");
