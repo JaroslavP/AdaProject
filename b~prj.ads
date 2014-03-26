@@ -275,7 +275,7 @@ package ada_main is
    pragma Export (C, u00119, "parallel_circuitB");
    u00120 : constant Version_32 := 16#82e9a112#;
    pragma Export (C, u00120, "parallel_circuitS");
-   u00121 : constant Version_32 := 16#9625d612#;
+   u00121 : constant Version_32 := 16#add2d466#;
    pragma Export (C, u00121, "parallel_sequential_circuitB");
    u00122 : constant Version_32 := 16#f7d0680d#;
    pragma Export (C, u00122, "parallel_sequential_circuitS");
@@ -317,14 +317,26 @@ package ada_main is
    pragma Export (C, u00140, "system__exn_llfS");
    u00141 : constant Version_32 := 16#dc11d781#;
    pragma Export (C, u00141, "system__fat_fltS");
-   u00142 : constant Version_32 := 16#a6e358bc#;
-   pragma Export (C, u00142, "system__stream_attributesB");
-   u00143 : constant Version_32 := 16#e89b4b3f#;
-   pragma Export (C, u00143, "system__stream_attributesS");
-   u00144 : constant Version_32 := 16#5ad6489e#;
-   pragma Export (C, u00144, "sequential_circuitB");
-   u00145 : constant Version_32 := 16#3c3491dc#;
-   pragma Export (C, u00145, "sequential_circuitS");
+   u00142 : constant Version_32 := 16#84ad4a42#;
+   pragma Export (C, u00142, "ada__numericsS");
+   u00143 : constant Version_32 := 16#03e83d1c#;
+   pragma Export (C, u00143, "ada__numerics__elementary_functionsB");
+   u00144 : constant Version_32 := 16#9c80fa8f#;
+   pragma Export (C, u00144, "ada__numerics__elementary_functionsS");
+   u00145 : constant Version_32 := 16#3e0cf54d#;
+   pragma Export (C, u00145, "ada__numerics__auxB");
+   u00146 : constant Version_32 := 16#9f6e24ed#;
+   pragma Export (C, u00146, "ada__numerics__auxS");
+   u00147 : constant Version_32 := 16#5073d598#;
+   pragma Export (C, u00147, "system__machine_codeS");
+   u00148 : constant Version_32 := 16#a6e358bc#;
+   pragma Export (C, u00148, "system__stream_attributesB");
+   u00149 : constant Version_32 := 16#e89b4b3f#;
+   pragma Export (C, u00149, "system__stream_attributesS");
+   u00150 : constant Version_32 := 16#5ad6489e#;
+   pragma Export (C, u00150, "sequential_circuitB");
+   u00151 : constant Version_32 := 16#3c3491dc#;
+   pragma Export (C, u00151, "sequential_circuitS");
    --  BEGIN ELABORATION ORDER
    --  ada%s
    --  interfaces%s
@@ -347,6 +359,7 @@ package ada_main is
    --  system.img_real%s
    --  system.io%s
    --  system.io%b
+   --  system.machine_code%s
    --  system.parameters%s
    --  system.parameters%b
    --  system.crtl%s
@@ -412,6 +425,11 @@ package ada_main is
    --  system.exception_table%s
    --  system.exception_table%b
    --  ada.io_exceptions%s
+   --  ada.numerics%s
+   --  ada.numerics.aux%s
+   --  ada.numerics.aux%b
+   --  ada.numerics.elementary_functions%s
+   --  ada.numerics.elementary_functions%b
    --  ada.tags%s
    --  ada.streams%s
    --  interfaces.c%s

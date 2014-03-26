@@ -12,6 +12,7 @@ package body ada_main is
    E129 : Short_Integer; pragma Import (Ada, E129, "system__fat_llf_E");
    E023 : Short_Integer; pragma Import (Ada, E023, "system__exception_table_E");
    E068 : Short_Integer; pragma Import (Ada, E068, "ada__io_exceptions_E");
+   E142 : Short_Integer; pragma Import (Ada, E142, "ada__numerics_E");
    E051 : Short_Integer; pragma Import (Ada, E051, "ada__tags_E");
    E049 : Short_Integer; pragma Import (Ada, E049, "ada__streams_E");
    E070 : Short_Integer; pragma Import (Ada, E070, "interfaces__c_E");
@@ -29,7 +30,7 @@ package body ada_main is
    E048 : Short_Integer; pragma Import (Ada, E048, "ada__text_io_E");
    E120 : Short_Integer; pragma Import (Ada, E120, "parallel_circuit_E");
    E122 : Short_Integer; pragma Import (Ada, E122, "parallel_sequential_circuit_E");
-   E145 : Short_Integer; pragma Import (Ada, E145, "sequential_circuit_E");
+   E151 : Short_Integer; pragma Import (Ada, E151, "sequential_circuit_E");
 
    Local_Priority_Specific_Dispatching : constant String := "";
    Local_Interrupt_States : constant String := "";
@@ -178,6 +179,8 @@ package body ada_main is
       E023 := E023 + 1;
       Ada.Io_Exceptions'Elab_Spec;
       E068 := E068 + 1;
+      Ada.Numerics'Elab_Spec;
+      E142 := E142 + 1;
       Ada.Tags'Elab_Spec;
       Ada.Streams'Elab_Spec;
       E049 := E049 + 1;
@@ -217,7 +220,7 @@ package body ada_main is
       E048 := E048 + 1;
       E120 := E120 + 1;
       E122 := E122 + 1;
-      E145 := E145 + 1;
+      E151 := E151 + 1;
    end adainit;
 
    procedure Ada_Main_Program;
